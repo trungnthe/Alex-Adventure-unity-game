@@ -1,5 +1,5 @@
 
-Here's a README content draft for your GitHub project based on the story you provided:
+
 
 Alex Người Hùng Eldoria
 Introduction
