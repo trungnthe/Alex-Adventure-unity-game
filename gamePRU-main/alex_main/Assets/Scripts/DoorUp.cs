@@ -23,6 +23,11 @@ public class DoorUp : MonoBehaviour
         }
     }
 
+    public void StartMovingDoors()
+    {
+        isMoving = true; // Bắt đầu di chuyển cửa
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("DoorUp called");
@@ -30,10 +35,9 @@ public class DoorUp : MonoBehaviour
         {
             Debug.Log("Player entered the trigger");
             isMoving = true; // Bắt đầu di chuyển cửa
-            saw.GetComponent<SawMovement>().enabled=true;
+            saw.GetComponent<SawMovement>().enabled = true;
         }
     }
-
 
     void Update()
     {

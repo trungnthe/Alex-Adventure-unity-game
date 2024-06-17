@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class key : MonoBehaviour
+public class Key : MonoBehaviour
 {
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
         if (collision.CompareTag("Player"))
         {
             PlayerMovement player = collision.GetComponent<PlayerMovement>();
@@ -18,7 +15,6 @@ public class key : MonoBehaviour
                 player.HasKey = true;
                 Destroy(gameObject);
             }
-
         }
     }
 }

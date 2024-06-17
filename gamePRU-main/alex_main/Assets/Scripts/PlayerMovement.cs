@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool HasKey { get; set; } = false;
+    public bool HasKey { get; set; }
 
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
@@ -109,7 +109,8 @@ public class PlayerMovement : MonoBehaviour
             isAlive = false;
             myAnimator.SetTrigger("Dying");
             myRigidbody.velocity = deathKick;
-            
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
+
         }
     }
 

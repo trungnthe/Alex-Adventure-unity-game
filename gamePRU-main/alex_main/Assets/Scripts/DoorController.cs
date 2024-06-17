@@ -10,8 +10,7 @@ public class DoorController : MonoBehaviour
 
     void Start()
     {
-
-        Debug.Log(" called");
+        Debug.Log("DoorController Start called");
         // Lưu lại vị trí ban đầu của tất cả các cửa
         initialPositions = new Vector3[doors.Length];
         for (int i = 0; i < doors.Length; i++)
@@ -20,14 +19,9 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void StartMovingDoors()
     {
-        Debug.Log("OnTriggerEnter called");
-        if (other.CompareTag("Player")) // Kiểm tra xem object va chạm có tag là Player hay không
-        {
-            Debug.Log("Player entered the trigger");
-            isMoving = true; // Bắt đầu di chuyển cửa
-        }
+        isMoving = true; // Bắt đầu di chuyển cửa
     }
 
     void Update()
