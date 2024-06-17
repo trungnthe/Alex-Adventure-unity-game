@@ -21,8 +21,8 @@ TagManager:
   - Hazards
   - Bullets
   - Interactables
-  - 
-  - 
+  - UpButton
+  - DownButton
   - 
   - 
   - 
@@ -41,6 +41,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ladder
+    uniqueID: 3788581751
     locked: 0
   - name: Background
     uniqueID: 2654948761
