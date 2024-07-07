@@ -6,10 +6,13 @@ public class SawMovement : MonoBehaviour
     [SerializeField] Transform[] points; // Các điểm lưỡi cưa sẽ di chuyển qua
     [SerializeField] float speed = 5f; // Tốc độ di chuyển của lưỡi cưa
     [SerializeField] GameObject player;
+    [SerializeField] GameObject switchh;
+
 
     private int currentPointIndex = 0;
     private Transform targetPoint;
-    private bool moving = true; // Biến để kiểm tra xem lưỡi cưa còn di chuyển hay không
+    private bool moving = false; // Biến để kiểm tra xem lưỡi cưa còn di chuyển hay không
+
 
     void Start()
     {
@@ -21,7 +24,8 @@ public class SawMovement : MonoBehaviour
 
     void Update()
     {
-        if (targetPoint != null && moving)
+        Switchhh sw = switchh.GetComponent<Switchhh>();
+        if (targetPoint != null && sw.isOpen)
         {
             // Di chuyển lưỡi cưa tới điểm đích
             transform.position = Vector2.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);

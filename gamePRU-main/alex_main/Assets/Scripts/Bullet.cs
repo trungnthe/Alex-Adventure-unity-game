@@ -5,12 +5,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float bulletSpeed = 20f;
+    [SerializeField] AudioSource shoot;
     Rigidbody2D myRigidbody;
     PlayerMovement player;
     float xSpeed;
     
     void Start()
     {
+        shoot.Play();
         myRigidbody = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerMovement>();
         xSpeed = player.transform.localScale.x * bulletSpeed;

@@ -34,14 +34,7 @@ public class GameSession : MonoBehaviour
 
     public void ProcessPlayerDeath()
     {
-        if (playerLives > 1)
-        {
-            TakeLife();
-        }
-        else
-        {
-            ResetGameSession();
-        }
+        TakeLife();
     }
 
     public void AddToScore(int pointsToAdd)

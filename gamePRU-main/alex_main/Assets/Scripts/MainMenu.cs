@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 
     [SerializeField] AudioSource bgMusic;
+    [SerializeField] AudioSource onClickSoundd;
 
     private void Awake()
     {
@@ -21,5 +22,20 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void onClickSound()
+    {
+        onClickSoundd.Play();
+    }
+
+    public void pause()
+    {
+        bgMusic?.Pause();
+    }
+
+    public void continuee()
+    {
+        bgMusic.Play();
     }
 }

@@ -7,6 +7,8 @@ public class Switchhh : MonoBehaviour
     public Sprite closedDoorSprite;
     public Sprite openDoorSprite;
 
+    public bool isOpen= false;
+
     private SpriteRenderer spriteRenderer;
 
     private void Start()
@@ -31,5 +33,6 @@ public class Switchhh : MonoBehaviour
     private void OpenDoor()
     {
         spriteRenderer.sprite = openDoorSprite;
+        isOpen = true;
     }
 }

@@ -8,6 +8,9 @@ public class Door : MonoBehaviour
     public Sprite closedDoorSprite;
     public Sprite openDoorSprite;
     public float levelLoadDelay = 1f; // Thời gian trì hoãn trước khi chuyển cảnh
+    [SerializeField] Animator transitionAnim;
+    [SerializeField] GameObject transitionOff;
+    [SerializeField] AudioSource win;
 
     private SpriteRenderer spriteRenderer;
     private DoorUp doorUp;
@@ -34,6 +37,7 @@ public class Door : MonoBehaviour
                 {
                     doorUp.StartMovingDoors();
                 }
+                win.Play();
                 StartCoroutine(LoadNextLevel());
             }
         }
@@ -46,6 +50,7 @@ public class Door : MonoBehaviour
 
     private IEnumerator LoadNextLevel()
     {
+        transitionAnim.SetTrigger("End");
         yield return new WaitForSecondsRealtime(levelLoadDelay);
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -64,5 +69,7 @@ public class Door : MonoBehaviour
         }
 
         SceneManager.LoadScene(nextSceneIndex);
+        transitionAnim.SetTrigger("Start");
+        transitionOff.SetActive(true);
     }
 }
