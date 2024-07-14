@@ -38,38 +38,41 @@ public class Door : MonoBehaviour
                     doorUp.StartMovingDoors();
                 }
                 win.Play();
-                StartCoroutine(LoadNextLevel());
+                SawMovement sawMovement = new SawMovement();
+                sawMovement.moving = false;
+               
+                nextLevel();
             }
         }
     }
 
-    private void OpenDoor()
+    public void OpenDoor()
     {
         spriteRenderer.sprite = openDoorSprite;
     }
 
-    private IEnumerator LoadNextLevel()
+    public void nextLevel()
+    {
+        StartCoroutine(LoadNextLevel());
+    }
+
+    IEnumerator LoadNextLevel()
     {
         transitionAnim.SetTrigger("End");
         yield return new WaitForSecondsRealtime(levelLoadDelay);
-
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
 
-        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
         {
-            nextSceneIndex = 0; // Quay lại cảnh đầu tiên nếu không còn cảnh nào tiếp theo
-        }
-
-        // Reset lại trạng thái cảnh trước khi chuyển cảnh
-        ScenePersist scenePersist = FindObjectOfType<ScenePersist>();
-        if (scenePersist != null)
-        {
-            scenePersist.ResetScenePersist();
+            nextSceneIndex = 0;
         }
 
         SceneManager.LoadScene(nextSceneIndex);
         transitionAnim.SetTrigger("Start");
         transitionOff.SetActive(true);
     }
+
+
 }
+

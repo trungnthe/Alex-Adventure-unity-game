@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gun;
     [SerializeField] AudioSource jump;
+    [SerializeField] TextMeshProUGUI Score;
 
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
@@ -111,8 +115,11 @@ public class PlayerMovement : MonoBehaviour
             isAlive = false;
             myAnimator.SetTrigger("Dying");
             myRigidbody.velocity = deathKick;
-            FindObjectOfType<GameSession>().ProcessPlayerDeath();
-
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            CoinPickup coinPickup = new CoinPickup();
+            coinPickup.ResetCoin();
+            Score.text = CoinPickup.score.ToString();
+            SceneManager.LoadScene(currentSceneIndex);
         }
     }
 

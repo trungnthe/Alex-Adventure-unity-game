@@ -11,7 +11,7 @@ public class SawMovement : MonoBehaviour
 
     private int currentPointIndex = 0;
     private Transform targetPoint;
-    private bool moving = false; // Biến để kiểm tra xem lưỡi cưa còn di chuyển hay không
+    public bool moving = false; // Biến để kiểm tra xem lưỡi cưa còn di chuyển hay không
 
 
     void Start()

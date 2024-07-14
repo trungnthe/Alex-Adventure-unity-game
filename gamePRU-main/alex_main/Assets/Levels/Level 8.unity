@@ -2572,7 +2572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559544189432440646, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5623959111220081405, guid: 03a81cb5a0b83d74cba6779d68f6527e, type: 3}
       propertyPath: runSpeed
@@ -3334,7 +3334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1389369630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3347,6 +3347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c137398e83ad16a4bb7404840c6e64e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyPick: {fileID: 0}
 --- !u!58 &1389369631
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3565,6 +3566,10 @@ MonoBehaviour:
   closedDoorSprite: {fileID: 21300002, guid: ae3918a914038694d852d0bb81f62473, type: 3}
   openDoorSprite: {fileID: 21300004, guid: ae3918a914038694d852d0bb81f62473, type: 3}
   levelLoadDelay: 1
+  transitionAnim: {fileID: 0}
+  transitionOff: {fileID: 0}
+  BannerWinn: {fileID: 0}
+  win: {fileID: 0}
 --- !u!1 &1508689242
 GameObject:
   m_ObjectHideFlags: 0
@@ -4301,6 +4306,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3286326810474107629, guid: f27645141bbc0ca4baf511aed25c4676, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6871573961477396201, guid: f27645141bbc0ca4baf511aed25c4676, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -4311,7 +4320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8000563078816542942, guid: f27645141bbc0ca4baf511aed25c4676, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4073785067704336792, guid: f27645141bbc0ca4baf511aed25c4676, type: 3}

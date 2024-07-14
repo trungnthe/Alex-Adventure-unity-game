@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.0849, y: -30.6632}
-  m_SizeDelta: {x: 1169.647, y: 730.2889}
+  m_AnchoredPosition: {x: 209.54895, y: -163.59637}
+  m_SizeDelta: {x: 2456.628, y: 1739.6399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4568713966178389436
 CanvasRenderer:
@@ -380,6 +380,8 @@ MonoBehaviour:
   transitionAnim: {fileID: 2520492257560145812}
   transitionOff: {fileID: 3233389577546393781}
   win: {fileID: 6287690810113173147}
+  pointt: {fileID: 0}
+  maxPoints: 0
 --- !u!82 &6287690810113173147
 AudioSource:
   m_ObjectHideFlags: 0
