@@ -13,11 +13,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
-    [SerializeField] Vector2 deathKick = new Vector2 (10f, 10f);
+    [SerializeField] Vector2 deathKick = new Vector2(10f, 10f);
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gun;
     [SerializeField] AudioSource jump;
     [SerializeField] TextMeshProUGUI Score;
+    [SerializeField] TextMeshProUGUI bulletCountText; // Thêm tham chiếu đến UI Text để hiển thị số đạn
+
+    [SerializeField] int maxBullets = 15; // Số lượng đạn tối đa
+    private int currentBullets; // Số lượng đạn hiện tại
 
     Vector2 moveInput;
     Rigidbody2D myRigidbody;
@@ -35,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = myRigidbody.gravityScale;
+
+        currentBullets = maxBullets; // Khởi tạo số lượng đạn hiện tại bằng số đạn tối đa
+        UpdateBulletCount(); // Cập nhật số đạn ban đầu trên UI
     }
 
     void Update()
@@ -48,10 +55,13 @@ public class PlayerMovement : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        if (!isAlive) { return; }
-        Instantiate(bullet, gun.position, transform.rotation);
+        if (!isAlive || currentBullets <= 0) { return; } // Kiểm tra số lượng đạn trước khi bắn
+
+        Instantiate(bullet, gun.position, gun.rotation);
+        currentBullets--; // Giảm số lượng đạn khi bắn
+        UpdateBulletCount(); // Cập nhật số đạn trên UI
     }
-    
+
     void OnMove(InputValue value)
     {
         if (!isAlive) { return; }
@@ -61,24 +71,23 @@ public class PlayerMovement : MonoBehaviour
     void OnJump(InputValue value)
     {
         if (!isAlive) { return; }
-        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return;}
-        
-        if(value.isPressed)
+        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
+
+        if (value.isPressed)
         {
             // do stuff
             jump.Play();
-            myRigidbody.velocity += new Vector2 (0f, jumpSpeed);
+            myRigidbody.velocity += new Vector2(0f, jumpSpeed);
         }
     }
 
     void Run()
     {
-        Vector2 playerVelocity = new Vector2 (moveInput.x * runSpeed, myRigidbody.velocity.y);
+        Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, myRigidbody.velocity.y);
         myRigidbody.velocity = playerVelocity;
 
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
         myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
-
     }
 
     void FlipSprite()
@@ -87,20 +96,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerHasHorizontalSpeed)
         {
-            transform.localScale = new Vector2 (Mathf.Sign(myRigidbody.velocity.x), 1f);
+            transform.localScale = new Vector2(Mathf.Sign(myRigidbody.velocity.x), 1f);
         }
     }
 
     void ClimbLadder()
     {
-        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) 
-        { 
+        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
             myRigidbody.gravityScale = gravityScaleAtStart;
             myAnimator.SetBool("isClimbing", false);
             return;
         }
-        
-        Vector2 climbVelocity = new Vector2 (myRigidbody.velocity.x, moveInput.y * climbSpeed);
+
+        Vector2 climbVelocity = new Vector2(myRigidbody.velocity.x, moveInput.y * climbSpeed);
         myRigidbody.velocity = climbVelocity;
         myRigidbody.gravityScale = 0f;
 
@@ -123,6 +132,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-
+    void UpdateBulletCount()
+    {
+        bulletCountText.text = "Bullets: " + currentBullets.ToString();
+    }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     //hello
     [SerializeField] float moveSpeed = 1f;
     Rigidbody2D myRigidbody;
-    
+
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -15,10 +15,10 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        myRigidbody.velocity = new Vector2 (moveSpeed, 0f);
+        myRigidbody.velocity = new Vector2(moveSpeed, 0f);
     }
 
-    void OnTriggerExit2D(Collider2D other) 
+    void OnTriggerExit2D(Collider2D other)
     {
         moveSpeed = -moveSpeed;
         FlipEnemyFacing();
